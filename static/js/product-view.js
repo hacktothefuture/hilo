@@ -56,6 +56,20 @@ function addCon() {
     });
 }
 
+function seeAllPros() {
+    if(  $("#see-all-pros-btn").is(":visible") ) {
+        $("#see-all-pros-btn").fadeOut();
+    }
+    updatePros();
+}
+
+function seeAllCons() {
+    if(  $("#see-all-cons-btn").is(":visible") ) {
+        $("#see-all-cons-btn").fadeOut();
+    }
+    updateCons();
+}
+
 function updateAll() {
     updatePros();
     updateCons();
@@ -150,12 +164,12 @@ function onLoadConsSuccess( response ) {
 
 function onAddProSuccess( response ) {
     $("#add-pro-form").val("");
-    updatePros();
+    seeAllPros();
 }
 
 function onAddConSuccess( response ) {
     $("#add-con-form").val("");
-    updateCons();
+    seeAllCons();
 }
 
 function onAddProError( response ) {
@@ -187,4 +201,7 @@ function loadProduct() {
 
     $("#add-pro-btn").click(addPro);
     $("#add-con-btn").click(addCon);
+    
+    $("#see-all-pros-btn").click(seeAllPros);
+    $("#see-all-cons-btn").click(seeAllCons);
 }
