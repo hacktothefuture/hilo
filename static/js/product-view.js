@@ -131,9 +131,11 @@ function onLoadConsSuccess( response ) {
 }
 
 function onAddProSuccess( response ) {
+    updatePros();
 }
 
 function onAddConSuccess( response ) {
+    updateCons();
 }
 
 function onAddProError( response ) {

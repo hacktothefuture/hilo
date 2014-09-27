@@ -66,7 +66,6 @@ class getcons:
 class addpro:
 	def POST(self, prod_id):
 		message = web.data()
-		print "web.data was " + message
 		model.addPro(int(prod_id), message)
 
 class addcon:

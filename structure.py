@@ -65,7 +65,7 @@ class product:
 	def addCon(self, message):
 		self.currentID += 1
 		if (self.model.productList.get(self.id, -1) != -1):
-			self.conList.append(pro_con(self.currentID, message, ))
+			self.conList.append(pro_con(self.currentID, message, 1))
 		else:
 			self.conList.append(pro_con(self.currentID, message, 1))
 			self.model.productList[self.id] = product(self.model, self.id, [], self.conList)
