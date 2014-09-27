@@ -12,7 +12,7 @@ urls = (
     # *** BEWARE OF MISSING COMMAS *** #
 
 	'/', 'index',
-    '/query=(.+)', 'index',
+    '/query=(.*)', 'index',
 	'/products/(\d+)', 'prod',
 
 	# GETs
