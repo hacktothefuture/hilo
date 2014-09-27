@@ -18,18 +18,22 @@ function updateCons() {
 
 function addPro() {
     $.ajax({
-        url : "/products/" + productID + "/addpro_message=" + $("#add-pro-form").text,
+        url : "/products/" + productID + "/addpro",
+        data : $("#add-pro-form").val(),
         success : onAddProSuccess,
         error : onAddProError,
+        type : "POST",
         async : true
     });
 }
 
 function addCon() {
     $.ajax({
-        url : "/products/" + productID + "/addcon_message=" + $("#add-pro-form").text,
+        url : "/products/" + productID + "/addcon",
+        data : $("#add-con-form").val(),
         success : onAddProSuccess,
         error : onAddProError,
+        type : "POST",
         async : true
     });
 }
@@ -159,6 +163,6 @@ function loadProduct() {
     updateCons();
 
     $("#add-pro-btn").click(addPro);
-    $("#add-con-btn").click(addCon)
+    $("#add-con-btn").click(addCon);
     updateAll();
 }
