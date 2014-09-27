@@ -1,9 +1,27 @@
+function updatePros() {
+    $.ajax({
+        url : "/products/" + productID + "/gettoppros=3",
+        success : onLoadProsSuccess,
+        error : onLoadProsError,
+        async : true
+    });
+}
+
+function updateCons() {
+    $.ajax({
+        url : "/products/" + productID + "/gettopcons=3",
+        success : onLoadConsSuccess,
+        error : onLoadConsError,
+        async : true
+    });
+}
+
 function onUpVote( id ) {
-    alert("UPVOTED " + id);
     $.ajax({
         url : "/products/" + productID + "/voteup_proconid=" + id,
         async : true,
-        type : "POST"
+        type : "POST",
+        success : updatePros
     });
 }
 
@@ -22,6 +40,8 @@ function onLoadError( response ) {
 function onLoadProsSuccess( response ) {
     $("#pros-table").html("");
     
+    console.log(response);
+    
     if( response == "" ) {
         $("#pros-table").append("<tr><td>This doesn't have any feedback yet.</td></tr>");
     } else {
@@ -38,7 +58,7 @@ function onLoadProsSuccess( response ) {
                 " <span class='glyphicon glyphicon-arrow-down'></span></td></tr>"
             );
             
-            $("#pro-up" + i).click(function() { onUpVote(item.id) });
+            $("#pro-up" + i).click(new Function( "onUpVote(" + item.id + ")"));
         }
     }
 }
@@ -66,16 +86,6 @@ function loadProduct() {
     });
     
     // Request list of pros and cons
-    $.ajax({
-        url : "/products/" + productID + "/gettoppros=3",
-        success : onLoadProsSuccess,
-        error : onLoadProsError,
-        async : true
-    });
-    $.ajax({
-        url : "/products/" + productID + "/gettopcons=3",
-        success : onLoadConsSuccess,
-        error : onLoadConsError,
-        async : true
-    });
+    updatePros();
+    updateCons();
 }

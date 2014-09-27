@@ -55,18 +55,18 @@ class product:
 			
 	def voteUp(self, pcID):
 		for i in self.conList:
-			if i==pcID:
+			if i.id==pcID:
 				i.votes += 1
 		for i in self.proList:
-			if i==pcID:
-				i.votes +=1
+			if i.id==pcID:
+				i.votes += 1
 				
-	def voteUp(self, pcID):
+	def voteDown(self, pcID):
 		for i in self.conList:
-			if i==pcID:
+			if i.id==pcID:
 				i.votes -= 1
 		for i in self.proList:
-			if i==pcID:
+			if i.id==pcID:
 				i.votes -=1		
 			
 class pro_con:

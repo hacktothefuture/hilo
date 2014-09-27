@@ -72,11 +72,11 @@ class addcon:
 
 class voteup:
 	def POST(self, prod_id, pcID):
-		model.productList[int(prod_id)].voteUp(pcID)
+		model.productList[int(prod_id)].voteUp(int(pcID))
 
 class votedown:
 	def POST(self, prod_id, pcID):
-		model.productList[int(prod_id)].voteDown(pcID)
+		model.productList[int(prod_id)].voteDown(int(pcID))
 
 
 
