@@ -2,6 +2,7 @@ import pickle
 
 class dataModel:
 	def __init__(self):
+		#initializes dataModel from the pickled file
 		self.saveFile = "save.p"
 		try:
 			self.productList = pickle.load( open("save.p", "rb")) 
@@ -9,15 +10,16 @@ class dataModel:
 			self.productList = {}
 	
 	def outputText(self):
+		#writes the pickle file to pickle.dump
 		pickle.dump(self.productList, open("save.p", "wb"))
 
 	def addPro(self, prod_id, message):
-		print str(self.productList.keys())
+		#Checks whether the product is represented in the model, if not adds it
 		if prod_id not in self.productList.keys():
-			print "creating new product"
 			self.productList[prod_id] = product(self, prod_id, [], [])
+		#Calls addPro at the product level
 		self.productList[prod_id].addPro(message)
-		print "Now, product's pros are " + str(self.productList[prod_id].getTopPros(5))
+
 
 	def addCon(self, id, message):
 		if id not in self.productList.keys():
@@ -53,6 +55,7 @@ class product:
 		return self.conList
 		
 	def addPro(self, message):
+		#increments id for the pros and cons to avoid duplicate ids
 		self.currentID += 1
 		if (self.model.productList.get(self.id, -1) != -1):
 			self.proList.append(pro_con(self.currentID, message, 1))
@@ -62,6 +65,7 @@ class product:
 		self.model.outputText()
 			
 	def addCon(self, message):
+		#imcrements id for the pros and cons to avoid duplicate ids
 		self.currentID += 1
 		if (self.model.productList.get(self.id, -1) != -1):
 			self.conList.append(pro_con(self.currentID, message, 1))
@@ -71,6 +75,7 @@ class product:
 		self.model.outputText()
 			
 	def voteUp(self, pcID):
+		//searchs for pros or cons with that id
 		for i in self.conList:
 			if i.id==pcID:
 				i.votes += 1
@@ -80,6 +85,7 @@ class product:
 		self.model.outputText()
 				
 	def voteDown(self, pcID):
+		//searchs for pros or cons with that id
 		for i in self.conList:
 			if i.id==pcID:
 				i.votes -= 1
@@ -94,15 +100,5 @@ class pro_con:
 		self.message = message
 		self.votes = votes	
 
-def populate():
-	model = dataModel()
-	proList = [pro_con(1, "Better than anything I've ever used", 1759), pro_con(3, "Looks Pretty", -15)]
-	conList = [pro_con(2, "Worst product ever", 158), pro_con(4, "Meh", -1000000)]
-	model.productList[1] = product(model, 1, proList, conList)
-	model.outputText()
-	
-		
-if __name__ == "__main__":
-	populate()
 		
 
