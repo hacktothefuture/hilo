@@ -1,5 +1,5 @@
 import web
-import structure
+from structure import dataModel, product, pro_con
 import json
 
 web.config.debug = False
@@ -62,6 +62,6 @@ class votedown:
 
 
 if __name__ == "__main__": 
-	model = structure.dataModel()
+	model = dataModel()
 	app = web.application(urls, globals())
 	app.run()
