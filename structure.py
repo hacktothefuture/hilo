@@ -40,7 +40,7 @@ class product:
 	def addPro(self, message):
 		self.currentID += 1
 		if (self.model.productList.get(self.id, -1) != -1):
-			self.proList.append(pro_con(self.currentID, message, 1)
+			self.proList.append(pro_con(self.currentID, message, 1))
 		else:
 			proList = [pro_con(self.currentID, message, 1)]
 			self.model.productList[self.id] = product(self.model, self.id, proList, [])
@@ -48,7 +48,7 @@ class product:
 	def addCon(self, message):
 		self.currentID += 1
 		if (self.model.productList.get(self.id, -1) != -1):
-			self.conList.append(pro_con(self.currentID, message, 1)
+			self.conList.append(pro_con(self.currentID, message, 1))
 		else:
 			conList = [pro_con(self.currentID, message, 1)]
 			self.model.productList[self.id] = product(self.model, self.id, conList, [])
