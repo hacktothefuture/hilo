@@ -9,14 +9,14 @@ urls = (
 
 	# GETs
 	'/products/(\d+)/gettoppros', 'gettoppros',
-	'/products/(\d+)/gettoppros', 'gettopcons'
-	'/products/(\d+)/getpros', 'getpros'
-	'/products/(\d+)/getcons', 'getcons'
+	'/products/(\d+)/gettoppros', 'gettopcons',
+	'/products/(\d+)/getpros', 'getpros',
+	'/products/(\d+)/getcons', 'getcons',
 
 	# POSTs
 	'/products/(\d+)/addpro_message=(\w+)', 'addpro',
 	'/products/(\d+)/addcon_message=(\w+)', 'addcon',
-	'/products/(\d+)/voteup_proconid=(\d+)', 'voteup'
+	'/products/(\d+)/voteup_proconid=(\d+)', 'voteup',
 	'/products/(\d+)/votedown_proconid=(\d+)', 'votedown'
 	)
 
