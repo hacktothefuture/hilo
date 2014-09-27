@@ -1,3 +1,5 @@
+$def with (searchQuery)
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,6 +13,36 @@
 
     <link href="static/css/hilo.css" rel="stylesheet">
 
+    <script type="text/javascript">
+      var query = "$searchQuery";
+      // We have to load our script since the templating system has issues with jQuery's dollar sign
+      function loadScript(url, callback) {
+          // Adding the script tag to the head as suggested before
+          var head = document.getElementsByTagName('head')[0];
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = url;
+
+          // Then bind the event to the callback function.
+          // There are several events for cross browser compatibility.
+          script.onreadystatechange = callback;
+          script.onload = callback;
+
+          // Fire the loading
+          head.appendChild(script);
+      }
+      
+      function onScriptLoad() {
+        if (query != "") {
+         executeSearch(query);
+        }
+      }
+      
+      loadScript("../static/js/search-view.js", onScriptLoad);
+
+
+      </script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -19,7 +51,6 @@
     <![endif]-->
   </head>
   <body>
-    <script type="text/javascript" src="static/js/search-view.js"></script>
   
     <!-- banner -->
     <div class="container">

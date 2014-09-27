@@ -9,7 +9,10 @@ urls = (
     # any regex matchgroups are passed as arguments
     # to the class's GET or POST method
 
+    # *** BEWARE OF MISSING COMMAS *** #
+
 	'/', 'index',
+    '/query=(.+)', 'index',
 	'/products/(\d+)', 'prod',
 
 	# GETs
@@ -29,9 +32,9 @@ urls = (
 # classes to serve base html pages
 
 class index:
-	def GET(self):
+	def GET(self, searchQuery=""):
 		render = web.template.render('./')    
-		return render.index()
+		return render.index(searchQuery)
 
 class prod:
 	def GET(self, prodID):

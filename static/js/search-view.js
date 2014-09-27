@@ -46,14 +46,15 @@ function onSearchError( response ) {
     $("#search-results-table").fadeIn();
 }
 
-function executeSearch() {
+function executeSearch( searchQuery ) {
     $("#search-results-table > tbody").empty();
+    if (searchQuery == undefined) searchQuery = $("#search-query").val();
     
     $("#search-results-table").fadeOut();
     
     $.ajax({
         url : "https://api.target.com/v2/products/search?searchTerm=" +
-        $("#search-query").val() +
+        searchQuery +
         "&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF",
         success : onSearchSuccess,
         error : onSearchError,
