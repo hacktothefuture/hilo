@@ -31,7 +31,7 @@ function addCon() {
     $.ajax({
         url : "/products/" + productID + "/addcon",
         data : $("#add-con-form").val(),
-        success : onAddProSuccess,
+        success : onAddConSuccess,
         error : onAddProError,
         type : "POST",
         async : true
