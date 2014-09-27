@@ -181,6 +181,11 @@ function onAddConError( response ) {
 function onLoadConsError( response ) {
 }
 
+function executeSearch() {
+    // Jump back to search page
+    window.location.href = "../query=" + $("#search-query").val();
+}
+
 function loadProduct() {
 
     // Request details from Target
