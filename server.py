@@ -39,18 +39,26 @@ class prod:
 
 class gettoppros:
 	def GET(self, prod_id, n):
+		if (model.productList.get(int(prod_id),-1) ==-1):
+			return ""
 		return json.dumps(model.productList[int(prod_id)].getTopPros(int(n)), default=lambda o: o.__dict__)
 
 class gettopcons:
 	def GET(self, prod_id, n):
+		if (model.productList.get(int(prod_id),-1) ==-1):
+			return ""
 		return json.dumps(model.productList[int(prod_id)].getTopCons(int(n)), default=lambda o: o.__dict__)
 
 class getpros:
 	def GET(self, prod_id):
+		if (model.productList.get(int(prod_id),-1) ==-1):
+			return ""
 		return json.dumps(model.productList[int(prod_id)].getPros(), default=lambda o: o.__dict__)
 
 class getcons:
 	def GET(self, prod_id):
+		if (model.productList.get(int(prod_id),-1) ==-1):
+			return ""
 		return json.dumps(model.productList[int(prod_id)].getCons(), default=lambda o: o.__dict__)
 
 # POSTs
