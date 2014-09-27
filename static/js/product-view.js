@@ -16,12 +16,26 @@ function updateCons() {
     });
 }
 
+function updateAll() {
+    updatePros();
+    updateCons();
+}
+
 function onUpVote( id ) {
     $.ajax({
         url : "/products/" + productID + "/voteup_proconid=" + id,
         async : true,
         type : "POST",
-        success : updatePros
+        success : updateAll
+    });
+}
+
+function onDownVote( id ) {
+    $.ajax({
+        url : "/products/" + productID + "/votedown_proconid=" + id,
+        async : true,
+        type : "POST",
+        success : updateAll
     });
 }
 
@@ -40,8 +54,6 @@ function onLoadError( response ) {
 function onLoadProsSuccess( response ) {
     $("#pros-table").html("");
     
-    console.log(response);
-    
     if( response == "" ) {
         $("#pros-table").append("<tr><td>This doesn't have any feedback yet.</td></tr>");
     } else {
@@ -55,10 +67,13 @@ function onLoadProsSuccess( response ) {
                 i +
                 "'></span> " + 
                 item.votes + 
-                " <span class='glyphicon glyphicon-arrow-down'></span></td></tr>"
+                " <span class='glyphicon glyphicon-arrow-down'id='pro-down" +
+                i +
+                "'></span></td></tr>"
             );
             
             $("#pro-up" + i).click(new Function( "onUpVote(" + item.id + ")"));
+            $("#pro-down" + i).click(new Function( "onDownVote(" + item.id + ")"));
         }
     }
 }
@@ -67,6 +82,30 @@ function onLoadProsError( response ) {
 }
 
 function onLoadConsSuccess( response ) {
+    $("#cons-table").html("");
+    
+    if( response == "" ) {
+        $("#cons-table").append("<tr><td>This doesn't have any feedback yet.</td></tr>");
+    } else {
+        response = JSON.parse(response);
+        for( var i = 0; i < response.length; i++ ) {
+            var item = response[i];
+            $("#cons-table").append(
+                "<tr><td>" + 
+                item.message + 
+                "</td><td 'class='col-md-2'><span class='glyphicon glyphicon-arrow-up' id='con-up" +
+                i +
+                "'></span> " + 
+                item.votes + 
+                " <span class='glyphicon glyphicon-arrow-down'id='con-down" +
+                i +
+                "'></span></td></tr>"
+            );
+            
+            $("#con-up" + i).click(new Function( "onUpVote(" + item.id + ")"));
+            $("#con-down" + i).click(new Function( "onDownVote(" + item.id + ")"));
+        }
+    }
 }
 
 function onLoadConsError( response ) {
@@ -86,6 +125,5 @@ function loadProduct() {
     });
     
     // Request list of pros and cons
-    updatePros();
-    updateCons();
+    updateAll();
 }
