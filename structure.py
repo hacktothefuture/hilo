@@ -75,11 +75,12 @@ class pro_con:
 		self.message = message
 		self.votes = votes	
 
-def populate()
+def populate():
 	model = dataModel()
 	proList = [pro_con(1, "Better than anything I've ever used", 1759), pro_con(3, "Looks Pretty", -15)]
 	conList = [pro_con(2, "Worst product ever", 158), pro_con(4, "Meh", -1000000)]
 	model.productList[1] = product(model, 1, proList, conList)
+	model.outputText()
 	
 		
 if __name__ == "__main__":
