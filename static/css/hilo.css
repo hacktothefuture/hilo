@@ -1,0 +1,45 @@
+body {
+  background: url("../img/background.png");
+}
+
+#search-results-table, .desc, .pro-con-label {
+  color: white;
+  text-align: center;
+}
+
+#search-results-table a {
+  color: white;
+  text-decoration: underline;
+}
+
+.table-hover tbody tr:hover td {
+  background-color: grey;
+}
+
+.table tbody>tr>td.vert-align
+{
+  vertical-align: middle;
+}
+
+.glyphicon-ok {
+  color:#7ea5d7;
+}
+.glyphicon-remove {
+  color:#faa956;
+}
+
+.glyphicon-arrow-up:hover {
+  cursor:hand;
+}
+
+.glyphicon-arrow-down:hover {
+  cursor:hand;
+}
+
+.glyphicon-arrow-up {
+  color:#7ea5d7;
+}
+
+.glyphicon-arrow-down {
+  color:#faa956;
+}
