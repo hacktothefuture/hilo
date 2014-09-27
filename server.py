@@ -29,7 +29,7 @@ class index:
 class prod:
 	def GET(self, prodID):
 		render = web.template.render('./')
-		return render.index(prodID)
+		return render.product()
 
 
 
