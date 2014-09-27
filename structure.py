@@ -75,7 +75,7 @@ class product:
 		self.model.outputText()
 			
 	def voteUp(self, pcID):
-		//searchs for pros or cons with that id
+		# searches for pros or cons with that id
 		for i in self.conList:
 			if i.id==pcID:
 				i.votes += 1
@@ -85,7 +85,7 @@ class product:
 		self.model.outputText()
 				
 	def voteDown(self, pcID):
-		//searchs for pros or cons with that id
+		# searches for pros or cons with that id
 		for i in self.conList:
 			if i.id==pcID:
 				i.votes -= 1
