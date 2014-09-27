@@ -1,0 +1,28 @@
+body {
+  background: url("../img/background.png");
+}
+
+.table, p {
+  color: white;
+  text-align: center;
+}
+.table a {
+  color: white;
+  text-decoration: underline;
+}
+
+.table-hover tbody tr:hover td {
+  background-color: grey;
+}
+
+.table tbody>tr>td.vert-align
+{
+  vertical-align: middle;
+}
+
+.glyphicon-ok {
+  color:#7ea5d7;
+}
+.glyphicon-remove {
+  color:#faa956;
+}
