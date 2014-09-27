@@ -15,11 +15,13 @@ urls = (
 	'/products/(\d+)/getcons', 'getcons',
 
 	# POSTs
-	'/products/(\d+)/addpro_message=(\w+)', 'addpro',
-	'/products/(\d+)/addcon_message=(\w+)', 'addcon',
+	'/products/(\d+)/addpro_message=(.+)', 'addpro',
+	'/products/(\d+)/addcon_message=(.+)', 'addcon',
 	'/products/(\d+)/voteup_proconid=(\d+)', 'voteup',
 	'/products/(\d+)/votedown_proconid=(\d+)', 'votedown'
 	)
+
+# serve html pages
 
 class index:
 	def GET(self):
@@ -30,7 +32,6 @@ class prod:
 	def GET(self, prodID):
 		render = web.template.render('./')
 		return render.product()
-
 
 
 # GETs
