@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "HiLo Search",
+  "description": "This extension brings up the Hilo Score of an item on Target.com.",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_popup": "hilopopup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": ["hilomessager.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
