@@ -31,7 +31,7 @@ class index:
 class prod:
 	def GET(self, prodID):
 		render = web.template.render('./')
-		return render.product()
+		return render.product(prodID)
 
 
 # GETs
