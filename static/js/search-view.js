@@ -36,7 +36,7 @@ function onSearchSuccess( response ) {
         if (conText === "") { 
             conText = "Be the first to add a con!";
         }
-        $("#search-results-table > tbody:last").append("<tr><td><img width='100' height='100' src='" + item.fullImage + "' />" + "</td><td class='vert-align'><a href='/products/" + item.partNumber + "'>" + item.title + '</a><br /><span class="glyphicon glyphicon-ok"></span> : ' + proText + '<br /><span class="glyphicon glyphicon-remove"></span> : ' + conText + "</td></tr>");
+        $("#search-results-table > tbody:last").append("<tr><td><img class='img-rounded' width='100' height='100' src='" + item.fullImage + "' />" + "</td><td class='vert-align'><a href='/products/" + item.partNumber + "'>" + item.title + '</a><br /><span class="glyphicon glyphicon-ok"></span> : ' + proText + '<br /><span class="glyphicon glyphicon-remove"></span> : ' + conText + "</td></tr>");
     }
     
     $("#search-results-table").fadeIn();
