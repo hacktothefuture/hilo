@@ -9,8 +9,8 @@ urls = (
 	'/products/(\d+)', 'prod',
 
 	# GETs
-	'/products/(\d+)/gettoppros', 'gettoppros',
-	'/products/(\d+)/gettopcons', 'gettopcons',
+	'/products/(\d+)/gettoppros=(\d+)', 'gettoppros',
+	'/products/(\d+)/gettopcons=(\d+)', 'gettopcons',
 	'/products/(\d+)/getpros', 'getpros',
 	'/products/(\d+)/getcons', 'getcons',
 
@@ -19,6 +19,7 @@ urls = (
 	'/products/(\d+)/addcon_message=(.+)', 'addcon',
 	'/products/(\d+)/voteup_proconid=(\d+)', 'voteup',
 	'/products/(\d+)/votedown_proconid=(\d+)', 'votedown'
+	'/saveVals', 'save'
 	)
 
 # serve html pages
@@ -37,12 +38,12 @@ class prod:
 # GETs
 
 class gettoppros:
-	def GET(self, prod_id):
-		return json.dumps(model.productList[int(prod_id)].getTopPros(), default=lambda o: o.__dict__)
+	def GET(self, prod_id, n):
+		return json.dumps(model.productList[int(prod_id)].getTopPros(int(n)), default=lambda o: o.__dict__)
 
 class gettopcons:
-	def GET(self, prod_id):
-		return json.dumps(model.productList[int(prod_id)].getTopCons(), default=lambda o: o.__dict__)
+	def GET(self, prod_id, n):
+		return json.dumps(model.productList[int(prod_id)].getTopCons(int(n)), default=lambda o: o.__dict__)
 
 class getpros:
 	def GET(self, prod_id):
@@ -68,6 +69,7 @@ class voteup:
 class votedown:
 	def POST(self, prod_id, pcID):
 		model.productList[int(prod_id)].voteDown(pcID)
+
 
 
 if __name__ == "__main__": 
