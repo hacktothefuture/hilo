@@ -21,13 +21,13 @@ class product:
 		self.model = data_model
 		self.currentID = 0;
 		
-	def getTopPros(self, n=3):
+	def getTopPros(self, n=1):
 		self.proList.sort(key=lambda x: x.votes, reverse=True)
-		return self.conList[0:n]
-		
-	def getTopCons(self, n=3):
-		self.conList.sort(key=lambda x: x.votes, reverse=True)
 		return self.proList[0:n]
+		
+	def getTopCons(self, n=1):
+		self.conList.sort(key=lambda x: x.votes, reverse=True)
+		return self.conList[0:n]
 		
 	def getPros(self):
 		self.proList.sort(key=lambda x: x.votes, reverse=True)

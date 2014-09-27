@@ -6,10 +6,11 @@ web.config.debug = False
 
 urls = (
 	'/', 'index',
+	'/products/(\d+)', 'prod',
 
 	# GETs
 	'/products/(\d+)/gettoppros', 'gettoppros',
-	'/products/(\d+)/gettoppros', 'gettopcons',
+	'/products/(\d+)/gettopcons', 'gettopcons',
 	'/products/(\d+)/getpros', 'getpros',
 	'/products/(\d+)/getcons', 'getcons',
 
@@ -25,23 +26,30 @@ class index:
 		render = web.template.render('./')    
 		return render.index()
 
+class prod:
+	def GET(self, prodID):
+		render = web.template.render('./')
+		return render.index(prodID)
+
+
+
 # GETs
 
 class gettoppros:
 	def GET(self, prod_id):
-		return json.dumps(model.productList[int(prod_id)].getTopPros())
+		return json.dumps(model.productList[int(prod_id)].getTopPros(), default=lambda o: o.__dict__)
 
 class gettopcons:
 	def GET(self, prod_id):
-		return json.dumps(model.productList[int(prod_id)].getTopCons())
+		return json.dumps(model.productList[int(prod_id)].getTopCons(), default=lambda o: o.__dict__)
 
 class getpros:
-	def GET(self, pro_id):
-		return json.dumps(model.productList[int(prod_id)].getPros())
+	def GET(self, prod_id):
+		return json.dumps(model.productList[int(prod_id)].getPros(), default=lambda o: o.__dict__)
 
 class getcons:
 	def GET(self, prod_id):
-		return json.dumps(model.productList[int(prod_id)].getCons())
+		return json.dumps(model.productList[int(prod_id)].getCons(), default=lambda o: o.__dict__)
 
 # POSTs
 
