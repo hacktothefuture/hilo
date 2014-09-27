@@ -59,8 +59,7 @@ class product:
 		else:
 			self.proList.append(pro_con(self.currentID, message, 1))
 			self.model.productList[self.id] = product(self.model, self.id, self.proList, [])
-		for pro in self.proList:
-			print(pro.message)
+		self.model.outputText()
 			
 	def addCon(self, message):
 		self.currentID += 1
@@ -69,6 +68,7 @@ class product:
 		else:
 			self.conList.append(pro_con(self.currentID, message, 1))
 			self.model.productList[self.id] = product(self.model, self.id, [], self.conList)
+		self.model.outputText()
 			
 	def voteUp(self, pcID):
 		for i in self.conList:
@@ -77,6 +77,7 @@ class product:
 		for i in self.proList:
 			if i.id==pcID:
 				i.votes += 1
+		self.model.outputText()
 				
 	def voteDown(self, pcID):
 		for i in self.conList:
@@ -84,7 +85,8 @@ class product:
 				i.votes -= 1
 		for i in self.proList:
 			if i.id==pcID:
-				i.votes -=1		
+				i.votes -=1
+		self.model.outputText()	
 			
 class pro_con:
 	def __init__(self, pro_con_id, message, votes):
