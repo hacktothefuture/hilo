@@ -23,6 +23,8 @@
     <![endif]-->
   </head>
   <body>
+    <script type="text/javascript" src="js/search-view.js"></script>
+  
     <!-- banner -->
     <div class="container">
       <div class="row">
@@ -41,9 +43,9 @@
         <div class="col-lg-4">
           <form>
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for a product">
+                <input id="search-query" type="text" class="form-control" placeholder="Search for a product">
                 <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">Go!</button>
+                  <button class="btn btn-default" type="button" onclick="executeSearch()">Go!</button>
                 </span>
             </div>
          </form>
@@ -57,14 +59,8 @@
         <div class="row" style="margin-top:20px">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-          <table class="table table-hover text-center">
+          <table class="table table-hover text-center" id="search-results-table">
             <thead>
-<!--                 <tr>
-                    <th>Product Name</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                </tr> -->
             </thead>
             <tbody>
                 <tr>
