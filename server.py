@@ -23,7 +23,7 @@ urls = (
 class index:
 	def GET(self):
 		render = web.template.render('./')    
-		return render.what(id)
+		return render.index()
 
 # GETs
 
