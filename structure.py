@@ -1,12 +1,12 @@
 import pickle
 
-class data_model:
+class dataModel:
 	def __init__(self):
 		self.saveFile = "save.p"
 		try:
 			self.productList = pickle.load( open("save.p", "rb")) 
 		except EOFError:
-			self.productList = []
+			self.productList = {}
 	
 	def outputText(self):
 		pickle.dump(self.productList, open("save.p", "wb"))
@@ -14,14 +14,63 @@ class data_model:
 		
 		
 class product:
-	def __init__(self, prod_id, pro_con_list):
+	def __init__(self, data_model, prod_id, pro_list, con_list):
 		self.id = prod_id
-		self.list = pro_con_list
+		self.proList = pro_list
+		self.conList = con_list
+		self.model = data_model
+		self.currentID = 0;
 		
-
+	def getTopPros(self, n=3):
+		self.proList.sort(key=lambda x: x.votes, reverse=True)
+		return self.conList[0:n]
+		
+	def getTopCons(self, n=3):
+		self.conList.sort(key=lambda x: x.votes, reverse=True)
+		return self.proList[0:n]
+		
+	def getPros(self):
+		self.proList.sort(key=lambda x: x.votes, reverse=True)
+		return self.proList
+		
+	def getCons(self):
+		self.conList.sort(key=lambda x: x.votes, reverse=True)
+		return self.conList
+		
+	def addPro(self, message):
+		self.currentID += 1
+		if (self.model.productList.get(self.id, -1) != -1):
+			self.proList.append(pro_con(self.currentID, message, 1)
+		else:
+			proList = [pro_con(self.currentID, message, 1)]
+			self.model.productList[self.id] = product(self.model, self.id, proList, [])
+			
+	def addCon(self, message):
+		self.currentID += 1
+		if (self.model.productList.get(self.id, -1) != -1):
+			self.conList.append(pro_con(self.currentID, message, 1)
+		else:
+			conList = [pro_con(self.currentID, message, 1)]
+			self.model.productList[self.id] = product(self.model, self.id, conList, [])
+			
+	def voteUp(self, pcID):
+		for i in conList:
+			if i==pcID:
+				i.votes += 1
+		for i in proList:
+			if i==pcID:
+				i.votes +=1
+				
+	def voteUp(self, pcID):
+		for i in conList:
+			if i==pcID:
+				i.votes -= 1
+		for i in proList:
+			if i==pcID:
+				i.votes -=1		
+			
 class pro_con:
-	def __init__(self, pro_con_id, is_pro, message, votes):
-		self.pro = is_pro
+	def __init__(self, pro_con_id, message, votes):
 		self.id = pro_con_id
 		self.message = message
 		self.votes = votes	

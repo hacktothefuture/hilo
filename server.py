@@ -1,4 +1,6 @@
 import web
+import structure
+import json
 
 web.config.debug = False
 
@@ -25,39 +27,40 @@ class index:
 # GETs
 
 class gettoppros:
-    def GET(self, id):
-        return getTopPros(id)
+    def GET(self, prod_id):
+        return json.dumps(model.productList[prod_id].getTopPros())
 
 class gettopcons:
-    def GET(self, id):
-        return getTopCons(id)
+    def GET(self, prod_id):
+        return json.dumps(model.productList[prod_id].getTopCons())
 
 class getpros:
-    def GET(self, id):
-        return getPros(id)
+    def GET(self, pro_id):
+        return json.dumps(model.productList[prod_id].getPros())
 
 class getcons:
-    def GET(self, id):
-        return getCons(id)
+    def GET(self, prod_id):
+        return json.dumps(model.productList[prod_id].getCons())
 
 # POSTs
 
 class addpro:
-    def POST(self, id, message):
-        addPro(id, message)
+    def POST(self, prod_id, message):
+        model.productList[prod_id].addPro(message)
 class addcon:
-    def POST(self, id, message):
-        addCon(id, message)
+    def POST(self, prod_id, message):
+        model.productList[prod_id].addCon(message)
 
 class voteup:
-    def POST(self, id, message):
-        voteUp(id, message)
+    def POST(self, prod_id, pcID):
+        model.productList[prod_id].voteUp(pcID)
 
 class votedown:
-    def POST(self, id, message):
-        voteDown(id, message)
+    def POST(self, prod_id, pcID):
+        model.productList[prod_id].voteDown(pcID)
 
 
 if __name__ == "__main__": 
+	model = dataModel()
     app = web.application(urls, globals())
     app.run()
