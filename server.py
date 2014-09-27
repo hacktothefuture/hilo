@@ -15,10 +15,10 @@ urls = (
 	'/products/(\d+)/getcons', 'getcons',
 
 	# POSTs
-	'/products/(\d+)/addpro_message=(.+)', 'addpro',
-	'/products/(\d+)/addcon_message=(.+)', 'addcon',
+	'/products/(\d+)/addpro', 'addpro',
+	'/products/(\d+)/addcon', 'addcon',
 	'/products/(\d+)/voteup_proconid=(\d+)', 'voteup',
-	'/products/(\d+)/votedown_proconid=(\d+)', 'votedown'
+	'/products/(\d+)/votedown_proconid=(\d+)', 'votedown',
 	'/saveVals', 'save'
 	)
 
@@ -64,11 +64,15 @@ class getcons:
 # POSTs
 
 class addpro:
-	def POST(self, prod_id, message):
-		model.productList[int(prod_id)].addPro(message)
+	def POST(self, prod_id):
+		message = web.data()
+		print "web.data was " + message
+		model.addPro(int(prod_id), message)
+
 class addcon:
-	def POST(self, prod_id, message):
-		model.productList[int(prod_id)].addCon(message)
+	def POST(self, prod_id):
+		message = web.data()
+		model.addCon(int(prod_id), message)
 
 class voteup:
 	def POST(self, prod_id, pcID):

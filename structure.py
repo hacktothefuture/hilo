@@ -10,7 +10,20 @@ class dataModel:
 	
 	def outputText(self):
 		pickle.dump(self.productList, open("save.p", "wb"))
-		
+
+	def addPro(self, prod_id, message):
+		print str(self.productList.keys())
+		if prod_id not in self.productList.keys():
+			print "creating new product"
+			self.productList[prod_id] = product(self, prod_id, [], [])
+		self.productList[prod_id].addPro(message)
+		print "Now, product's pros are " + str(self.productList[prod_id].getTopPros(5))
+
+	def addCon(self, id, message):
+		if id not in self.productList.keys():
+			self.productList[id] = product(self, id, [], [])
+		self.productList[id].addCon(message)
+
 		
 		
 class product:
@@ -23,6 +36,8 @@ class product:
 		
 	def getTopPros(self, n=1):
 		self.proList.sort(key=lambda x: x.votes, reverse=True)
+		for i in self.proList:
+			print(i.message)
 		return self.proList[0:n]
 		
 	def getTopCons(self, n=1):
@@ -42,16 +57,18 @@ class product:
 		if (self.model.productList.get(self.id, -1) != -1):
 			self.proList.append(pro_con(self.currentID, message, 1))
 		else:
-			proList = [pro_con(self.currentID, message, 1)]
-			self.model.productList[self.id] = product(self.model, self.id, proList, [])
+			self.proList.append(pro_con(self.currentID, message, 1))
+			self.model.productList[self.id] = product(self.model, self.id, self.proList, [])
+		for pro in self.proList:
+			print(pro.message)
 			
 	def addCon(self, message):
 		self.currentID += 1
 		if (self.model.productList.get(self.id, -1) != -1):
-			self.conList.append(pro_con(self.currentID, message, 1))
+			self.conList.append(pro_con(self.currentID, message, ))
 		else:
-			conList = [pro_con(self.currentID, message, 1)]
-			self.model.productList[self.id] = product(self.model, self.id, conList, [])
+			self.conList.append(pro_con(self.currentID, message, 1))
+			self.model.productList[self.id] = product(self.model, self.id, [], self.conList)
 			
 	def voteUp(self, pcID):
 		for i in self.conList:
