@@ -16,6 +16,24 @@ function updateCons() {
     });
 }
 
+function addPro() {
+    $.ajax({
+        url : "/products/" + productID + "/addpro_message=" + $("#add-pro-form").text,
+        success : onAddProSuccess,
+        error : onAddProError,
+        async : true
+    });
+}
+
+function addPro() {
+    $.ajax({
+        url : "/products/" + productID + "/addcon_message=" + $("#add-pro-form").text,
+        success : onAddProSuccess,
+        error : onAddProError,
+        async : true
+    });
+}
+
 function onUpVote( id ) {
     $.ajax({
         url : "/products/" + productID + "/voteup_proconid=" + id,
@@ -69,6 +87,18 @@ function onLoadProsError( response ) {
 function onLoadConsSuccess( response ) {
 }
 
+function onAddProSuccess( response ) {
+}
+
+function onAddConSuccess( response ) {
+}
+
+function onAddProError( response ) {
+}
+
+function onAddConError( response ) {
+}
+
 function onLoadConsError( response ) {
 }
 
@@ -88,4 +118,7 @@ function loadProduct() {
     // Request list of pros and cons
     updatePros();
     updateCons();
+
+    $("#add-pro-btn").click(addPro);
+    $("#add-con-btn").click(addCon)
 }
