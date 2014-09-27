@@ -3,25 +3,39 @@ function onSearchSuccess( response ) {
         var item = response.CatalogEntryView[i];
         var proText = "";
         var conText = "";
-        $.ajax({    // get the #1 pro
+         // get the #1 pro
+        $.ajax({
             url : "products/" + item.partNumber + "/gettoppros=1",
             success : function (data) {
-                proText = data.message
+                if( data == "" )
+                {
+                    return;
+                }
+                data = JSON.parse(data);
+                proText = data[0].message;
             },
-            error : function () {},
-            async : true
+            async : false
         });
-        $.ajax({    // get the #1 con
+        // get the #1 con
+        $.ajax({
             url : "products/" + item.partNumber + "/gettopcons=1",
             success : function (data) {
-                conText = data.message
+                if( data == "" )
+                {
+                    return;
+                }
+                data = JSON.parse(data);
+                conText = data[0].message;
             },
-            error : function () {},
-            async : true
+            async : false
         });
 
-        if (proText === "") proText = "Be the first to add a pro!";
-        if (conText === "") conText = "Be the first to add a con!";
+        if (proText === "") {
+            proText = "Be the first to add a pro!";
+        }
+        if (conText === "") { 
+            conText = "Be the first to add a con!";
+        }
         $("#search-results-table > tbody:last").append("<tr><td><img width='100' height='100' src='" + item.fullImage + "' />" + "</td><td class='vert-align'><a href='/products/" + item.partNumber + "'>" + item.title + '</a><br /><span class="glyphicon glyphicon-ok"></span> : ' + proText + '<br /><span class="glyphicon glyphicon-remove"></span> : ' + conText + "</td></tr>");
     }
     
