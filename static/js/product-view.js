@@ -1,6 +1,6 @@
 function updatePros() {
     $.ajax({
-        url : "/products/" + productID + "/gettoppros=3",
+        url : "/products/" + productID + "/getpros",
         success : onLoadProsSuccess,
         error : onLoadProsError,
         async : true
@@ -9,7 +9,25 @@ function updatePros() {
 
 function updateCons() {
     $.ajax({
-        url : "/products/" + productID + "/gettopcons=3",
+        url : "/products/" + productID + "/getcons",
+        success : onLoadConsSuccess,
+        error : onLoadConsError,
+        async : true
+    });
+}
+
+function updateTopPros() {
+    $.ajax({
+        url : "/products/" + productID + "/gettoppros=5",
+        success : onLoadProsSuccess,
+        error : onLoadProsError,
+        async : true
+    });
+}
+
+function updateTopCons() {
+    $.ajax({
+        url : "/products/" + productID + "/gettopcons=5",
         success : onLoadConsSuccess,
         error : onLoadConsError,
         async : true
@@ -65,7 +83,7 @@ function onLoadSuccess( response ) {
     // Get product details from Target
     var product = response.CatalogEntryView[0];
     
-    $("#product-title").text(product.title);
+    $("#product-title").text(product.title + " - " + product.Offers[0].OfferPrice[0].formattedPriceValue);
     $("#product-image").attr("src", product.Images[0].PrimaryImage[0].image);
     $("#product-details").append(product.shortDescription);
 }
@@ -131,10 +149,12 @@ function onLoadConsSuccess( response ) {
 }
 
 function onAddProSuccess( response ) {
+    $("#add-pro-form").val("");
     updatePros();
 }
 
 function onAddConSuccess( response ) {
+    $("#add-con-form").val("");
     updateCons();
 }
 
@@ -148,6 +168,7 @@ function onLoadConsError( response ) {
 }
 
 function loadProduct() {
+
     // Request details from Target
     $.ajax({
         url : "http://api.target.com/v2/products/" +
@@ -161,10 +182,9 @@ function loadProduct() {
     });
     
     // Request list of pros and cons
-    updatePros();
-    updateCons();
+    updateTopPros();
+    updateTopCons();
 
     $("#add-pro-btn").click(addPro);
     $("#add-con-btn").click(addCon);
-    updateAll();
 }
