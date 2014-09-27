@@ -7,10 +7,10 @@
     <title>UpDowns</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <style>
       body {
-        background: url("img/halftone.png");
+        background: url("static/img/halftone.png");
       }
     </style>
 
@@ -57,15 +57,50 @@
       </div>
     </div>
         </div>
-        <div class="col-md-6"> <!-- pro cons -->
+        <div align="center">
+            <span class="glyphicon glyphicon-ok"></span>
+            <p>Pros</p>
+        </div>
+        <div class="col-md-6"> <!-- pros -->
           <table class="table table-hover text-center" style="background-color: white">
             <thead>
-<!--                 <tr>
-                    <th>Product Name</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                </tr> -->
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <span class="glyphicon glyphicon-arrow-up"></span>
+                        150
+                        <span class="glyphicon glyphicon-arrow-down"></span>
+                    </td>
+                    <td class="col-md-10" style="text-align:left; vertical-align:middle">Aenean ultricies consectetur ligula ut accumsan </td>
+                </tr>
+                <tr>
+                    <td>Up<br />Down</td>
+                    <td style="text-align:left; vertical-align:middle">Donec eros nisl, facilisis non libero eu, luctus sodales erat</td>
+                </tr>
+                <tr>
+                    <td>Up<br />Down</td>
+                    <td style="text-align:left; vertical-align:middle">Duis tristique non lacus sit amet vestibulum</td>
+                </tr>
+                <tr><td colspan="2">See All...</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="input-group" align="center">
+            <input type="text" class="form-control" placeholder="Add your own pro">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Add</button>
+            </span>
+        </div>
+        
+        <br />
+        
+        <div align="center">
+        <span class="glyphicon glyphicon-remove"></span>
+            <p>Cons</p>
+        </div>
+        <table class="table table-hover text-center" style="background-color: white">
+            <thead>
             </thead>
             <tbody>
                 <tr>
@@ -80,20 +115,15 @@
                     <td>Up<br />Down</td>
                     <td style="text-align:left; vertical-align:middle">Duis tristique non lacus sit amet vestibulum</td>
                 </tr>
-                <tr>
-                    <td class="col-md-2">Up<br />Down</td>
-                    <td class="col-md-10" style="text-align:left; vertical-align:middle">Aenean ultricies consectetur ligula ut accumsan </td>
-                </tr>
-                <tr>
-                    <td>Up<br />Down</td>
-                    <td style="text-align:left; vertical-align:middle">Donec eros nisl, facilisis non libero eu, luctus sodales erat</td>
-                </tr>
-                <tr>
-                    <td>Up<br />Down</td>
-                    <td style="text-align:left; vertical-align:middle">Duis tristique non lacus sit amet vestibulum</td>
-                </tr>
             </tbody>
           </table>
+          
+        <div class="input-group" align="center">
+            <input type="text" class="form-control" placeholder="Add your own con">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Add</button>
+            </span>
+        </div>
           
         </div>
         </div>
@@ -111,6 +141,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
   </body>
 </html>
