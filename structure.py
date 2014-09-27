@@ -54,18 +54,18 @@ class product:
 			self.model.productList[self.id] = product(self.model, self.id, conList, [])
 			
 	def voteUp(self, pcID):
-		for i in conList:
+		for i in self.conList:
 			if i==pcID:
 				i.votes += 1
-		for i in proList:
+		for i in self.proList:
 			if i==pcID:
 				i.votes +=1
 				
 	def voteUp(self, pcID):
-		for i in conList:
+		for i in self.conList:
 			if i==pcID:
 				i.votes -= 1
-		for i in proList:
+		for i in self.proList:
 			if i==pcID:
 				i.votes -=1		
 			
