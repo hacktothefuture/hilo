@@ -98,6 +98,7 @@ function onLoadSuccess( response ) {
     var product = response.CatalogEntryView[0];
     
     $("#product-title").text(product.title + " - " + product.Offers[0].OfferPrice[0].formattedPriceValue);
+    $("#product-image").fadeIn();
     $("#product-image").attr("src", product.Images[0].PrimaryImage[0].image);
     $("#product-details").append(product.shortDescription);
 }
@@ -187,6 +188,7 @@ function executeSearch() {
 }
 
 function loadProduct() {
+    $("#product-image").attr("src", "../static/img/loading.gif");
 
     // Request details from Target
     $.ajax({

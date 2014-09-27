@@ -48,7 +48,11 @@ function onSearchError( response ) {
 
 function executeSearch( searchQuery ) {
     $("#search-results-table > tbody").empty();
-    if (searchQuery == undefined) searchQuery = $("#search-query").val();
+    if (searchQuery == undefined) {
+        searchQuery = $("#search-query").val();
+    } else {
+        $("#search-query").val(searchQuery);
+    }
     
     $("#search-results-table").fadeOut();
     
